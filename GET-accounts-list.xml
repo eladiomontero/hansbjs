@@ -1,0 +1,6 @@
+<accounts>
+    <account name="Account1" id="1" customerid="c1"/>
+    <account name="Account2" id="2" customerid="c2"/>
+    <account name="Account3" id="3" customerid="c3"/>
+    <account name="Account4" id="4" customerid="c4"/>
+</accounts>

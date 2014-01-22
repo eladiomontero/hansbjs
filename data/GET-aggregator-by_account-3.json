@@ -1,0 +1,8 @@
+[
+	{name:"ytuk", type: "filter",
+		filters: [{value:"/qwesd/", action: "include"},
+				{value:"/maisdn2/", action: "exclude"},
+				{value:"/asdasfgg/", action: "include"}
+				]},
+	{name:"blog1", type: "filter1"}
+]

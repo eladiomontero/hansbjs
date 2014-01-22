@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="lib/jquery.js"></script>
+		<script src="lib/underscore.js"></script>
+		<script src="lib/backbone.js"></script>
+		<script src="lib/backbone.layoutmanager.js"></script>
+        <script src="lib/xml2json.js"></script>
+		
+		<script src="js/main2.js"></script>
+	
+		<!--Main Layout-->
+		<script type="template" class="template" id="layout">
+			<h1>Billing application</h1>
+			<div id= "acc_form"></div>	
+			<div id= "agg_form"></div>	
+		</script>
+		
+		<script type="template" class="template" id="acc_form">
+			<h3>Accounts</h3>
+			<ul id="accounts_dd">
+			<% accounts.each(function(account){ %>
+				<li>
+					<a href= "#account/<%= account.cid %>"><%= account.get('name') %></a>
+				</li>
+			<%}); %>
+			</ul>
+		</script>
+
+		<script type="template" class="template" id="agg_form">
+			<h3>Aggregators</h3>
+			<ul>
+			<% aggregators.each(function(agg){ %>
+				<li>
+					<a href= "#aggregator/<%= agg.cid %>"><%= agg.get('name') %></a>
+                    <%console.log(agg.get('filter'), "aah");%>
+					<% try {%>
+					<%for (var i=0; i<agg.get('filter').length; i++){%>
+						<p><%=(agg.get('filter')[i].value)%></p>
+					<%}} catch(err) {%>
+						<p>No filters added.</p>
+					<%}%>
+				</li>
+			<%}); %>
+			</ul>
+		</script>
+	</head>
+	<body></body>
+</html>

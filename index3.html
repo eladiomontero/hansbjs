@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="styles/Style3.css">
+		<link rel="shortcut icon" href="img/DLBi2.ico"/>
+
+		<script src="lib/jquery.js"></script>
+		<script src="lib/underscore.js"></script>
+		<script src="lib/backbone.js"></script>
+		<script src="lib/backbone.layoutmanager.js"></script>
+        <script src="lib/xml2json.js"></script>
+		
+		<script src="js/main2.js"></script>
+	
+		<!--Main Layout-->
+		<script type="template" class="template" id="layout">
+			<h1>Billing application</h1>
+			<div id= "acc_form"></div>	
+			<div id= "agg_form"></div>	
+		</script>
+		
+		<script type="template" class="template" id="acc_form">
+			<h3>Accounts</h3>
+			<form class="form-search" onsubmit="return false">
+			    <input type="text" class="input-medium search-query" placeholder="search" id="search" autocomplete="off">
+			</form>
+			<style id="search_style"></style>
+							
+				<ul class="contacts">				
+				<% accounts.each(function(account){ %>
+					<li class="contact searchable" data-index="#account/<%= account.get('name') %>">
+						<a href= "#account/<%= account.get('id') %>"><%= account.get('name') %></a>
+					</li>
+				<%}); %>
+				</ul>
+		</script>	
+
+		<script type="template" class="template" id="agg_form">
+			<h3>Aggregators</h3>
+			<ul class= "contacts">
+			<% aggregators.each(function(agg){ %>
+				<li class= "contact searchable">
+					<a href= "#aggregator/<%= agg.cid %>"><%= agg.get('name') %></a>
+					<ul>
+						<% try {%>
+						<%for (var i=0; i<agg.get('filter').length; i++){%>
+							<li><p><%=(agg.get('filter')[i].value)%></p></li>
+						<%}} catch(err) {%>
+							<p>No filters added.</p>
+						<%}%>
+					</ul>
+				</li>
+			<%}); %>
+			</ul>
+		</script>
+
+		<script type="text/javascript">
+			//var searchStyle = document.getElementById('search_style');
+			var searchStyle = $("#search_style").html();
+			//document.getElementById('search').addEventListener('input', function() {
+			$(document).on("change", "#search", function(){
+				console.log("jksd");
+				/*if (!this.value) {
+				searchStyle.innerHTML = "";
+			return;*/
+				if( $(this).text()=="" ){
+					search_style.html('');
+					return;
+				}
+				// look ma, no indexOf!
+				//searchStyle.innerHTML = ".searchable:not([data-index*=\"" + this.value.toLowerCase() + "\"]) { display: none; }";
+				// beware of css injections!
+				search_style.html(".searchable:not([data-index*=\"" + $(this).text().toLowerCase() + "\"]) { display: none; }");
+			});		
+	</script>
+			
+
+	</head>
+	<body>
+	</body>
+
+</html>

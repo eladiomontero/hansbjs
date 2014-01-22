@@ -1,9 +1,0 @@
-[
-	{name:"blog", type: "filter",
-		filters: [{value:"/main/", action: "include"},
-				{value:"/main2/", action: "exclude"},
-				{value:"/main4/", action: "include"}
-				]},
-	{name:"blog1", type: "filter1"},
-	{name:"blog2", type: "filter2"}
-]

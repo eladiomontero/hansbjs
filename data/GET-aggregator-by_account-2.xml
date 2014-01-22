@@ -1,0 +1,10 @@
+<aggregators>
+	<aggregator name="Blog main" type="filters">
+		<filter value="/main/" action="include"/>
+		<filter value="/blog/*" action="include"/>
+	</aggregator>
+	<aggregator name="Blog Direct Post" type="filters">
+		<filter value="/blog/*" action="exclude"/>
+		<filter value="/blog/" action="exclude"/>
+	</aggregator>
+</aggregators>

@@ -57,19 +57,19 @@
 			//Attach Collection and their data.
 			accounts = new AccountCollection([
 				//data from the xml
-				{acc_id:1, name:"Account1"}, 
-				{acc_id:2, name:"Account2"},
-				{acc_id:3, name:"Account3"}
+				{id:1, name:"Account1"}, 
+				{id:2, name:"Account2"},
+				{id:3, name:"Account3"}
 			]);
 		},
 		page: function(id){
 			if (!id) {
         	// Set default id.
-        		id = accounts.models[0].cid;
+        		id = accounts.models[0].get('id');
 	      	}
-
 	      	var aggregators= null;
-            loadAggregators(1, function(d){
+            loadAggregators(id, function(d){
+            	console.log(d);
                 aggregators= new AggregatorCollection();
                 var json= $.xml2json(d);
                 for (var i=0; i<json.aggregator.length; i++){
@@ -97,7 +97,7 @@
 
     function loadAggregators(id_account, cb){
         var x = $.ajax({
-            url:"GET-aggregator-by_account-1.xml",
+            url:"GET-aggregator-by_account-"+ id_account +".xml",
             type:"GET",
             dataType : 'xml',
             success: function(d){
